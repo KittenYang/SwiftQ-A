@@ -39,8 +39,8 @@ import UIKit
 //
 //dic["APP"] = "apples"
 
-let scores = [90,190,10,22,234,34,23,91,3,33,57]
 
+let scores = [90,190,10,22,234,34,23,91,3,33,57]
 
 for score in scores{
     if  score > 40 {
@@ -57,15 +57,15 @@ if let name = optionalName{
     greeting = "Hello,\(name)"
 }
 
-//
-//var stringArray = [String]()
-//var stringDic   = [String : String]()
-//
-//var stringArraySimple = []
-//var stringDicSimple   = [:]
+var stringArray = [String]()
+var stringDic   = [String : String]()
+
+var stringArraySimple = []
+var stringDicSimple   = [:]
 
 
 
+//---------switch-case---------------
 let vegetable = "red pepper"
 switch vegetable {
     case "celery":
@@ -79,6 +79,9 @@ switch vegetable {
 }
 
 
+
+
+//--------forin遍历字典-----------
 let forinDic = [
     "ONE":[1,2,3,4,5],
     "TWO":[11,22,33,44,55],
@@ -86,9 +89,7 @@ let forinDic = [
     "Four":[1111,2222,3333,4444,5555],
     "Five":[11111,22222,33333,44444,55555],
 ]
-
 var largest = 333
-
 for (kinds,numbers) in forinDic{
     for number in numbers{
         if number > largest && number < 44444{
@@ -106,14 +107,12 @@ while n < 100 {
 }
 n
 
-
 var m = 2
 do{
     m *= 2
 }while(m < 100)
 
 m
-
 
 
 //------范围的使用：0...4------
