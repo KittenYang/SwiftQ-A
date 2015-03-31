@@ -139,7 +139,7 @@ greet("KITTEN", "4月1号")
 
 
 //----使用元组让函数返回多个值！！------
-func greetingWithMutilpReturns(scores:[Int])->(MIN:Int,MAX:Int,SUM:Int){
+func getMinMaxSum(scores:[Int])->(MIN:Int,MAX:Int,SUM:Int){
 
     var min = scores[0]
     var max = scores[0]
@@ -158,7 +158,7 @@ func greetingWithMutilpReturns(scores:[Int])->(MIN:Int,MAX:Int,SUM:Int){
 }
 
 
-let statistics = greetingWithMutilpReturns([5,3,10,3,9])
+let statistics = getMinMaxSum([5,3,10,3,9])
 statistics.SUM
 statistics.2 //可以用“.返回值” 或者 ".数组下标"的形式获得其中某个返回值
 
