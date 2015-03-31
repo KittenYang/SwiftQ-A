@@ -131,8 +131,37 @@ for i in 0..<4 {
 loop2
 
 
-//-----
-var kk = "ss"
+//-----函数------
+func greet(name:String,day:String)->String{
+    return "Hello,\(name),today is \(day)"
+}
+greet("KITTEN", "4月1号")
+
+
+//----使用元组让函数返回多个值！！------
+func greetingWithMutilpReturns(scores:[Int])->(MIN:Int,MAX:Int,SUM:Int){
+
+    var min = scores[0]
+    var max = scores[0]
+    var sum = 0
+    
+    for score in scores{
+        if score > max{
+            max = score
+        }else if score < min{
+            min = score
+        }
+        sum += score
+    }
+    
+    return (min,max,sum)
+}
+
+
+let statistics = greetingWithMutilpReturns([5,3,10,3,9])
+statistics.SUM
+statistics.2 //可以用“.返回值” 或者 ".数组下标"的形式获得其中某个返回值
+
 
 
 
