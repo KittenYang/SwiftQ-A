@@ -38,30 +38,30 @@ import UIKit
 //]
 //
 //dic["APP"] = "apples"
-
-
-let scores = [90,190,10,22,234,34,23,91,3,33,57]
-
-for score in scores{
-    if  score > 40 {
-        println(score)
-    }else{
-        println(score)
-    }
-
-}
-
-var optionalName : String? = "KITTEN"
-var greeting = "It's my greeting!"
-if let name = optionalName{
-    greeting = "Hello,\(name)"
-}
-
-var stringArray = [String]()
-var stringDic   = [String : String]()
-
-var stringArraySimple = []
-var stringDicSimple   = [:]
+//
+//
+//let scores = [90,190,10,22,234,34,23,91,3,33,57]
+//
+//for score in scores{
+//    if  score > 40 {
+//        println(score)
+//    }else{
+//        println(score)
+//    }
+//
+//}
+//
+//var optionalName : String? = "KITTEN"
+//var greeting = "It's my greeting!"
+//if let name = optionalName{
+//    greeting = "Hello,\(name)"
+//}
+//
+//var stringArray = [String]()
+//var stringDic   = [String : String]()
+//
+//var stringArraySimple = []
+//var stringDicSimple   = [:]
 
 
 
@@ -131,7 +131,8 @@ for i in 0..<4 {
 loop2
 
 
-
+//-----
+var kk = "ss"
 
 
 
