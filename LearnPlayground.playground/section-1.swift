@@ -163,6 +163,68 @@ statistics.SUM
 statistics.2 //可以用“.返回值” 或者 ".数组下标"的形式获得其中某个返回值
 
 
+//--------带可变个数的参数的函数----------
+//计算总和
+func sumOf(numbers:Int...)->Int{
+    var sum = 0
+    for number in numbers{
+        sum += number
+    }
+    return sum
+}
+
+sumOf(0,23,44,44,11)
+sumOf()
+
+//计算平均值
+func averageOf(numbers:Int...)->Int{
+    var sum = 0
+    for number in numbers{
+        sum += number
+    }
+    
+    return sum/numbers.count
+}
+
+averageOf(1,2,3,4,5)
+
+
+//嵌套函数——可以用来重构一个较复杂或较长的函数
+func returnFifteen()->Int{
+    var y = 18
+    func add(){
+        y+=5
+    }
+    add()
+    return y
+}
+
+returnFifteen()
+
+
+//函数作为另一个函数的返回值
+//(Void ->Int) 必须和 ()->Int 匹配
+func twoFuncs()->(Void ->Int){
+    func oneFun()->Int{
+        return 5
+    }
+    return oneFun
+}
+
+var test = twoFuncs()
+test()
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
