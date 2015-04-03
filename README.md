@@ -167,8 +167,195 @@
 
 ##4.1
 ###函数和闭包
-
 1）如何声明函数？如何调用函数？如何指定函数的返回值？
+    
+     func greet(name:String,day:String)->String{
+
+        return "Hello,\(name),today is \(day)"
+
+     }
+
+     greet("KITTEN", "4月1号")
+
+
+
+2）多个返回值的函数
+
+func getMinMaxSum(scores:[Int])->(MIN:Int,MAX:Int,SUM:Int){
+
+    var min = scores[0]
+
+    var max = scores[0]
+
+    var sum = 0
+
+    
+
+    for score in scores{
+
+        if score > max{
+
+            max = score
+
+        }else if score < min{
+
+            min = score
+
+        }
+
+        sum += score
+
+    }
+
+    
+
+    return (min,max,sum)
+
+}
+
+
+
+let statistics = getMinMaxSum([5,3,10,3,9])
+
+statistics.SUM
+
+statistics.2 //可以用“.返回值” 或者 ".数组下标"的形式获得其中某个返回值
+
+
+
+3）带可变个数的参数的函数
+
+//用可变个数的参数的函数实现计算平均值的函数，要求输入的参数数目随机
+
+
+
+func averageOf(numbers:Int...)->Int{
+
+    var sum = 0
+
+    for number in numbers{
+
+        sum += number
+
+    }
+
+    
+
+    return sum/numbers.count
+
+}
+
+averageOf(1,2,3,4,5)
+
+
+
+4）如何使用嵌套函数?
+
+     func returnFifteen()->Int{
+
+        var y = 18
+
+         func add(){
+
+            y+=5
+
+         }
+
+         add()
+
+        return y
+
+     }
+
+     returnFifteen()
+
+
+
+5）函数怎么作为另一个函数的返回值？
+
+     func twoFuncs()->(Void ->Int){
+
+        func oneFun()->Int{
+
+            return 5
+
+        }
+
+        return oneFun
+
+     }
+
+     var test = twoFuncs()
+
+     test()
+
+
+
+6）函数如何作为参数传入另一个函数
+
+     func hasAnyMatches(list:[Int],condition:Int->Bool)->Bool{
+
+        for item in list{
+
+            if condition(item){
+
+                return true
+
+            }
+
+        }
+
+        return false
+
+     }
+
+     func lessThanTen(number:Int)->Bool{
+
+        return number < 10
+
+     }
+
+     var numbers = [20,19,7,12]
+
+     hasAnyMatches(numbers, lessThanTen)
+
+
+
+7）用 '{}' 创建一个匿名闭包
+
+     var blockNumbers = [80,10,20,100]
+
+     blockNumbers.map {
+
+        (number:Int) -> Int in
+
+         let result = 3 * number
+
+         return result
+
+     }
+
+
+
+8）创建一个类型已知的闭包
+
+     var MappedNumbers = [10,20,30,40]
+
+     let mappedNumbers = MappedNumbers.map({ number in 3 * number })
+
+     mappedNumbers
+
+
+
+9）当一个闭包作为最后一个参数的时候可以怎么写？
+
+     var SortedNumbers = [40,50,60,70]
+
+     let sortedNumbers = sorted(SortedNumbers) { $0 > $1 }
+
+     sortedNumbers   //通过参数位置引用参数
+
+     //当一个闭包作为最后一个参数传给一个函数的时候，可以直接跟在括号后面
     
 
 
