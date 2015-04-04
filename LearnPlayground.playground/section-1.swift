@@ -270,3 +270,111 @@ shape.numberOfSides = 7
 var shapeDes = shape.simpleDescription()
 
 
+//-----类里面的构造函数、析构函数----
+class NamedShape{
+    var numberOfSides : Int = 0
+    var name : String
+    init(name:String){
+        self.name = name
+    }
+
+    deinit{
+        
+    }
+    
+    func simpleDescription()->String{
+        return "A shape with \(numberOfSides) sides,is \(name)"
+    }
+    
+}
+
+var tesss = NamedShape(name: "八边形")
+tesss.simpleDescription()
+
+
+//------子类的定义-------
+class Circle: NamedShape {
+    var radius: Double
+    init(r: Double,na:String){
+        self.radius = r
+        super.init(name: na)
+        self.name = "ss"
+        //在使用父类的变量之前，必须先call super.init
+        //在之类init方法返回之前，必须call super.init
+    }
+    
+    func area()->Double{
+        return self.radius * self.radius * M_PI
+    }
+    
+    override func simpleDescription() -> String {
+        return "这是重载的圆形"
+    }
+}
+
+var circle = Circle(r:4,na:"yuanxin")
+circle.area()
+circle.simpleDescription()
+
+
+
+//-----使用getter/setter------
+class Triangle: NamedShape{
+    var sideLength: Double = 0.0
+    init(sideLength:Double, name:String){
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 3
+    }
+    
+    var perimeter: Double{
+        get{
+            return 3*self.sideLength
+        }
+        set{
+            self.sideLength = newValue/3.0
+            //newValue 是系统规定的固定名词
+        }
+    }
+    
+    override func simpleDescription() -> String {
+        return "\(sideLength)"
+    }
+}
+
+var tri = Triangle(sideLength: 3.1, name: "三角形")
+tri.perimeter
+tri.perimeter = 9.9
+tri.sideLength
+
+
+//-----willSet/didSet------
+//确保三角形的变长总是和正方形的变长相同
+class TriAndSqu{
+    var tri :Triangle{
+        willSet{
+            circle.radius = newValue.sideLength
+        }
+    }
+    var circle: Circle{
+        willSet{
+            tri.sideLength = newValue.radius
+        }
+    }
+    
+    init(size: Double,name: String){
+        circle = Circle(r: size, na: "圆形")
+        tri = Triangle(sideLength: size, name: "三角形")
+    }
+}
+
+var triandsqu = TriAndSqu(size: 10, name: "test shape")
+triandsqu.tri.sideLength
+triandsqu.circle.radius
+
+
+
+//------类中的叫方法，类外的叫函数，他们的区别------
+
+
+
