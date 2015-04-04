@@ -2,8 +2,8 @@
 学习Swift过程中自己出的一些Q&amp;A问答题，方便巩固知识点。Swift learning Q&amp;A.
 
 
-##3.31
-###简单值
+
+##简单值
 1）声明变量、声明常量（以及如何声明类型）
 
      var str = "Hello, playground"
@@ -59,7 +59,7 @@
 
 
 
-###控制流
+##控制流
 
 1）有哪五种？分别的语法
 
@@ -165,8 +165,8 @@
      for i in 0..<4 // 0..<4表示不包含上边界。如果要包含上边界：0...4    
 
 
-##4.1
-###函数和闭包
+
+##函数和闭包
 1）如何声明函数？如何调用函数？如何指定函数的返回值？
     
      func greet(name:String,day:String)->String{
@@ -358,7 +358,249 @@ averageOf(1,2,3,4,5)
      //当一个闭包作为最后一个参数传给一个函数的时候，可以直接跟在括号后面
     
 
+##对象和类
 
+1）如何创建一个类
+
+     class Shape{
+
+        var numberOfSides = 0
+
+         func simpleDescription()->String{
+
+            return "A Shape with \(numberOfSides) sides"
+
+        }
+
+     }
+
+
+
+2）创建一个类的实例
+
+     var shape = Shape()
+
+     shape.numberOfSides = 7
+
+     var shapeDes = shape.simpleDescription()
+
+
+
+3）类里面的构造函数、析构函数
+
+     class NamedShape{
+
+        var numberOfSides : Int = 0
+
+         var name : String
+
+         init(name:String){
+
+             self.name = name
+
+         }
+
+         deinit{        
+
+         }
+
+         func simpleDescription()->String{
+
+            return "A shape with \(numberOfSides) sides,is \(name)"
+
+         }
+
+     }
+
+
+
+     var tesss = NamedShape(name: "八边形")
+
+     tesss.simpleDescription()
+
+
+
+4）子类的定义
+
+     class Circle: NamedShape {
+
+        var radius: Double
+
+         init(r: Double,na:String){
+
+            self.radius = r
+
+            super.init(name: na)
+
+             self.name = "ss"
+
+            //在使用父类的变量之前，必须先call super.init
+
+             //在之类init方法返回之前，必须call super.init
+
+        }
+
+    
+
+         func area()->Double{
+
+            return self.radius * self.radius * M_PI
+
+         }
+
+   
+
+        override func simpleDescription() -> String {
+
+             return "这是重载的圆形"
+
+        }
+
+     }
+
+
+
+     var circle = Circle(r:4,na:"yuanxin")
+
+     circle.area()
+
+     circle.simpleDescription()
+
+
+
+
+
+
+
+5）使用getter/setter
+
+     class Triangle: NamedShape{
+
+        var sideLength: Double = 0.0
+
+         init(sideLength:Double, name:String){
+
+            self.sideLength = sideLength
+
+             super.init(name: name)
+
+             numberOfSides = 3
+
+         }
+
+    
+
+        var perimeter: Double{
+
+            get{
+
+                return 3*self.sideLength
+
+            }
+
+             set{
+
+                self.sideLength = newValue/3.0
+
+                //newValue 是系统规定的固定名词
+
+             }
+
+        }
+
+    
+
+         override func simpleDescription() -> String {
+
+            return "\(sideLength)"
+
+         }
+
+     }
+
+
+
+     var tri = Triangle(sideLength: 3.1, name: "三角形")
+
+     tri.perimeter
+
+     tri.perimeter = 9.9
+
+     tri.sideLength
+
+
+
+6）什么情况下需要使用willSet/didSet？如何使用？
+
+    当不需要计算属性的时候，但仍然需要在设置一个新值之前或之后需要的代码可以写在willSet/didSet里。
+
+    如：确保三角形的边长总是和正方形的变长相同
+
+     class TriAndSqu{
+
+        var tri :Triangle{
+
+            willSet{
+
+                circle.radius = newValue.sideLength
+
+            }
+
+        }
+
+        var circle: Circle{
+
+            willSet{
+
+                tri.sideLength = newValue.radius
+
+            }
+
+        }
+
+    
+
+         init(size: Double,name: String){
+
+            circle = Circle(r: size, na: "圆形")
+
+            tri = Triangle(sideLength: size, name: "三角形")
+
+        }
+
+     }
+
+
+
+     var triandsqu = TriAndSqu(size: 10, name: "test shape")
+
+     triandsqu.tri.sideLength
+
+     triandsqu.circle.radius
+
+
+
+7）什么是方法？什么是函数？它们的区别？
+
+     类中的func叫方法，类外的func叫函数。
+
+     class Counter{
+
+        var count: Int = 0
+
+         func incrementBy(amount: Int,numberOfTimes: Int){
+
+            count += amount * numberOfTimes
+
+         }
+
+     }
+
+     var counter = Counter()
+
+     counter.incrementBy(2, numberOfTimes: 7)
+
+     //方法的参数名需要显式说明一下（第一个参数不用），比如上面的numberOfTimes。而函数的参数都不用显式说明。
 
 
 
