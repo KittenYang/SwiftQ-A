@@ -375,6 +375,16 @@ triandsqu.circle.radius
 
 
 //------类中的叫方法，类外的叫函数，他们的区别------
+class Counter{
+    var count: Int = 0
+    func incrementBy(amount: Int,numberOfTimes: Int){
+        count += amount * numberOfTimes
+    }
+}
+
+var counter = Counter()
+counter.incrementBy(2, numberOfTimes: 7)
+//方法的参数名需要显式说明一下（第一个参数不用），比如上面的numberOfTimes。而函数都不用显式说明。
 
 
 
