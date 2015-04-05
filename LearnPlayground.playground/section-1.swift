@@ -254,7 +254,9 @@ import UIKit
 
 
 
-//对象和类
+//****************
+//**  对象和类   **
+//****************
 
 //----如何创建一个类-----
 class Shape{
@@ -388,3 +390,34 @@ counter.incrementBy(2, numberOfTimes: 7)
 
 
 
+//******************
+//**  枚举和结构体  **
+//******************
+
+//-------如何创建一个枚举--------
+enum Rank: Int{
+    case Ace = 1
+    case Two,Three,Four,Five,Six,Seven,Eight,Nine,Ten
+    case Jack,Queen,King
+    func simpleDes() ->String{
+        switch self{
+        case .Ace:
+            return "Ace"
+        case .Jack:
+            return "Jack"
+        case .Queen:
+            return "Queen"
+        case .King:
+            return "King"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+
+let ace = Rank.Ace
+let aceRawValue = ace.rawValue
+if let convertedRank = Rank(rawValue: 13) {
+    let threeDescription = convertedRank.simpleDes()
+}
+//在上面的例子中，枚举原始值的类型是Int，所以你只需要设置第一个原始值。剩下的原始值会按照顺序赋值。
