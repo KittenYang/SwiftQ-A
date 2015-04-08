@@ -415,9 +415,55 @@ enum Rank: Int{
     }
 }
 
+//在上面的例子中，枚举原始值的类型是Int，所以你只需要设置第一个原始值。剩下的原始值会按照顺序赋值。
 let ace = Rank.Ace
 let aceRawValue = ace.rawValue
-if let convertedRank = Rank(rawValue: 13) {
+
+//使用‘rawValue'在原始值和枚举值之间转换
+if let convertedRank = Rank(rawValue: 3) {
     let threeDescription = convertedRank.simpleDes()
 }
-//在上面的例子中，枚举原始值的类型是Int，所以你只需要设置第一个原始值。剩下的原始值会按照顺序赋值。
+
+
+//原始值可以不设置
+enum Suit {
+    case Spades, Hearts, Diamonds, Clubs
+    func simpleDescription() -> String {
+        switch self {
+        case .Spades:
+            return "spades"
+        case .Hearts:
+            return "hearts"
+        case .Diamonds:
+            return "diamonds"
+        case .Clubs:
+            return "clubs"
+        }
+    }
+    
+}
+
+let hearts = Suit.Hearts
+let heartsDescription = hearts.simpleDescription()
+
+//-------如何创建一个结构体，与类之间最大的一个区别是什么--------
+//结构体和类之间有很多相似之处，如方法和构造器；最大的区别就是：结构体是传值，类是传引用。
+
+struct Card {
+    var rank : Rank
+    var suit : Suit
+    func simpleDescription() -> String{
+        return "The \(rank.simpleDes()) of \(suit.simpleDescription()) "
+    }
+}
+
+//结构体会自动生成init方法，其中的参数就是结构体里面定义的var，所以结构体是直接传值的
+let threeOfSpades = Card(rank: .Three, suit: .Spades)
+let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+
+
+
+
+
+
+
