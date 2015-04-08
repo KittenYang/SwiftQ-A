@@ -464,6 +464,49 @@ let threeOfSpadesDescription = threeOfSpades.simpleDescription()
 
 
 
+//-------如何声明一个协议--------
+protocol ExampleProtocol{
+    var simpleDescription : String{get}
+    mutating func adjust()
+}
 
+//类、枚举、结构体如何实现协议
+//类
+class simpleClass: ExampleProtocol{
+    var simpleDescription : String = "A very simple class"
+    var anothorProperty: Int  = 56908
+    func adjust() {
+        simpleDescription += " Now 100% adjusted"
+    }
+}
+var a = simpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+
+//结构体
+struct SimpleStructure: ExampleProtocol {
+    var simpleDescription: String = "A simple structure"
+    mutating func adjust() {
+        simpleDescription += " (adjusted)"
+    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+
+
+//---------如何声明一个拓展------------
+extension Int:ExampleProtocol{
+    var simpleDescription : String{
+        return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+    
+}
+
+7.simpleDescription
 
 
